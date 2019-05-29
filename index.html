@@ -1,0 +1,73 @@
+<!Doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+  	
+	<title>Stripe.com Navigation</title>
+</head>
+<body  ng-app="menuBaseline" ng-controller="menuController">
+	<header class="cd-morph-dropdown">
+		<a href="#0" class="nav-trigger">Open Nav<span aria-hidden="true"></span></a>
+		
+<nav class="main-nav">
+			<ul>
+			<li class="has-dropdown links" data-content="product" >
+			<a href="#0">product</a>
+			</li>
+			<li class="has-dropdown links" data-content="developers">
+			<a href="#0">developers</a>
+			</li>
+			<li class="has-dropdown links" data-content="company">
+			<a href="#0">company</a>
+			</li>
+			</ul>
+		</nav>
+		
+<div class="morph-dropdown-wrapper">
+			<div class="dropdown-list">
+				<ul>
+				<li id="{{key}}" class="dropdown links" ng-repeat="(key, dataSet) in mainMenu">
+						<a href="#0" class="label">{{key}}</a>
+						<div class="content">	
+							<ul class="links-list">
+								<li ng-repeat="value in dataSet">
+									<a href="#0">
+										<em>{{value.title}}</em>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					
+				</ul>
+
+				<div class="bg-layer" aria-hidden="true"></div>
+			</div> <!-- dropdown-list -->
+		</div><!-- morph-dropdown-wrapper -->
+	</header>
+
+	<main class="cd-main-content">
+		
+	</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+	var app = angular.module("menuBaseline",[]);
+app.controller('menuController',function($scope, $http){
+   $http.get("https://jsonblob.com/api/jsonBlob/6766327f-607d-11e9-95ef-9bcb815ba4a4")
+  .then(function(response) {
+    $scope.mainMenu = response.data;	
+	});
+});
+</script>
+<script src="js/main.js"></script> 
+</body>
+</html>
